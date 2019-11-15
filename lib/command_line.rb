@@ -58,12 +58,12 @@ class CommandLine
         i = 0
         ii = i + 1
         p "please work"
-        num = get.to_i
-        if num == ii
-            binding.pry
-            p "You've slected #{movie_titles[i][:title]}"
-            Show.create(user_id: User.last[:id], movie_id: movie_ids[i], user_name: User.last[:name], movie_title: movie[i][:title])
-            binding.pry
+        # num = get.to_i
+        # if num == ii
+        #     binding.pry
+        #     p "You've slected #{movie_titles[i][:title]}"
+        #     Show.create(user_id: User.last[:id], movie_id: movie_ids[i], user_name: User.last[:name], movie_title: movie[i][:title])
+        #     binding.pry
     #    elsif mov_sel == 2
     #         p "You've slected #{movie2[:title]}"
     #         Show.create(user_id: User.last[:id], movie_id: m_id2, user_name: User.last[:name], movie_title: movie2[:title])
@@ -82,7 +82,7 @@ class CommandLine
          
     #     else p "Sorry, you entered an incorrect enrtry"
     #      movie_display
-        end
+        #end
         #binding.pry
     end
 
