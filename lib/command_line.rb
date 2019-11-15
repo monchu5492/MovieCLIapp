@@ -9,6 +9,10 @@ class CommandLine
     def get
         $stdin.gets.chomp
     end
+
+    def g3t
+        $stdin.gets.chomp.to_i
+    end
     
     def new_user
         p "Please enter your name."
@@ -23,11 +27,23 @@ class CommandLine
 
     def movie_titles
      movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
-     movies.each do |movie| 
+     movie_titles = movies.each do |movie| 
         p "#{movie[:id]}: #{movie[:title]}"
         end
     end
 
+    def movie_ids
+    movie = Movie.find(1,2,3,4,5,6,7,8,9,10)
+    movie_ids = movie.map do |id| 
+            id[:id]
+        end
+        #binding.pry
+    # p "Please select a movie"
+    #     num = g3t
+    #     movie_selection(num)
+        #binding.pry
+    end
+    
     # def movie_ids
     #     mov_id = []
     #     movie = Movie.find(1,2,3,4,5,6,7,8,9,10)
@@ -37,36 +53,37 @@ class CommandLine
     #     end
     # end
     
+    
     def movie_selection
-        p "Please select a movie!"
-        
-        selection = get.to_i
+        i = 0
+        ii = i + 1
+        p "please work"
+        num = get.to_i
+        if num == ii
+            binding.pry
+            p "You've slected #{movie_titles[i][:title]}"
+            Show.create(user_id: User.last[:id], movie_id: movie_ids[i], user_name: User.last[:name], movie_title: movie[i][:title])
+            binding.pry
+    #    elsif mov_sel == 2
+    #         p "You've slected #{movie2[:title]}"
+    #         Show.create(user_id: User.last[:id], movie_id: m_id2, user_name: User.last[:name], movie_title: movie2[:title])
 
-        movie = Movie.find()
-       
-        if selection == 1
-            p "You've slected #{movie_titles[0]}"
-            Show.create(user_id: User.last[:id], movie_id: Movie.find(1), user_name: User.last[:name], movie_title: movie1[:title])
+    #     elsif mov_sel == 3
+    #         p "You've slected #{movie3[:title]}"
+    #         Show.create(user_id: User.last[:id], movie_id: m_id3, user_name: User.last[:name], movie_title: movie3[:title])
 
-       elsif mov_sel == 2
-            p "You've slected #{movie2[:title]}"
-            Show.create(user_id: User.last[:id], movie_id: m_id2, user_name: User.last[:name], movie_title: movie2[:title])
+    #     elsif mov_sel == 4
+    #         p "You've slected #{movie4[:title]}"
+    #         Show.create(user_id: User.last[:id], movie_id: m_id4, user_name: User.last[:name], movie_title: movie4[:title])
 
-        elsif mov_sel == 3
-            p "You've slected #{movie3[:title]}"
-            Show.create(user_id: User.last[:id], movie_id: m_id3, user_name: User.last[:name], movie_title: movie3[:title])
-
-        elsif mov_sel == 4
-            p "You've slected #{movie4[:title]}"
-            Show.create(user_id: User.last[:id], movie_id: m_id4, user_name: User.last[:name], movie_title: movie4[:title])
-
-        elsif mov_sel == 5
-            p "You've slected #{movie5[:title]}"
-            Show.create(user_id: User.last[:id], movie_id: m_id5, user_name: User.last[:name], movie_title: movie5[:title])
+    #     elsif mov_sel == 5
+    #         p "You've slected #{movie5[:title]}"
+    #         Show.create(user_id: User.last[:id], movie_id: m_id5, user_name: User.last[:name], movie_title: movie5[:title])
          
-        else p "Sorry, you entered an incorrect enrtry"
-         movie_display
+    #     else p "Sorry, you entered an incorrect enrtry"
+    #      movie_display
         end
+        #binding.pry
     end
 
     # def find_your_movie

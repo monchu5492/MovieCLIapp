@@ -7,12 +7,12 @@ cli.welcome
 
 #cli.new_user
 
-#cli.movie_titles
+cli.movie_titles
 
 cli.movie_ids
-#cli.movie_display
 
-#cli.movie_selection
+cli.movie_selection
+
 
 
 
