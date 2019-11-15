@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "shows", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.string "user_name"
+    t.string "movie_title"
   end
 
   create_table "users", force: :cascade do |t|
