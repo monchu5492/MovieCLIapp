@@ -9,10 +9,14 @@ cli.new_user
 
 cli.movie_titles
 
-cli.movie_ids
+cli.print_ticket
 
-#cli.movie_selection
+cli.change_movie
 
+cli.show_profile
 
+cli.new_movie
+
+cli.change_movie
 
 
