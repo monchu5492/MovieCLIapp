@@ -1,22 +1,25 @@
 require_relative '../config/environment'
 # require_all 'lib'
 
-cli = CommandLine.new
+# cli = CommandLine.new
 
-cli.welcome
+# cli.welcome
 
-cli.new_user
+# cli.new_user
 
-cli.movie_titles
+# cli.movie_titles
 
-cli.print_ticket
+# cli.print_ticket
 
-cli.change_movie
+# cli.change_movie
 
-cli.show_profile
+# cli.show_profile
 
-cli.new_movie
+# cli.new_movie
 
-cli.change_movie
+# cli.change_movie
 
 
+
+
+end
