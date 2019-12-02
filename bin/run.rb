@@ -1,11 +1,12 @@
+
 require_relative '../config/environment'
-# require_all 'lib'
+ require_all 'lib'
 
-# cli = CommandLine.new
+ cli = CommandLine.new
 
-# cli.welcome
+ cli.welcome
 
-# cli.new_user
+ cli.new_user
 
 # cli.movie_titles
 
@@ -20,6 +21,5 @@ require_relative '../config/environment'
 # cli.change_movie
 
 
-
-
-end
+binding.pry
+0

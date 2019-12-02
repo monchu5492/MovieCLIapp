@@ -2,9 +2,16 @@
 
 class CommandLine
 
-    def welcome
-        p "Welcome!"
-    end
+        def welcome
+            puts "__        __  _____   _        ____    ___    __  __   _____ "
+            puts "\\ \\      / / | ____| | |      / ___|  / _ \\  |  \\/  | | ____|"
+            puts " \\ \\ /\\ / /  |  _|   | |     | |     | | | | | |\\/| | |  _|  "
+            puts "  \\ V  V /   | |___  | |___  | |___  | |_| | | |  | | | |___ "
+            puts "   \\_/\\_/    |_____| |_____|  \\____|  \\___/  |_|  |_| |_____|"
+                                                                         
+                                                      
+            s_help(27)
+        end
      
     def get
         $stdin.gets.chomp
@@ -14,13 +21,21 @@ class CommandLine
         $stdin.gets.chomp.to_i
     end
 
+    def s_help(num)
+        num.times do
+            puts " "
+        end
+    end
+
     #create#
     def new_user
         p "Please enter your name."
         p "***********************"
+        s_help(28)
         name = get
         p "Please enter your age."
         p "***********************"
+        s_help(15)
         age = get
         new_profile = User.create(name: name, age: age)
         p "Thank You #{name}!"
