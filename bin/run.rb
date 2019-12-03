@@ -4,9 +4,19 @@ require_relative '../config/environment'
 
  cli = CommandLine.new
 
- cli.welcome
+# cli.welcome
 
- cli.new_user
+cli.all_movies
+
+cli.delete_movie
+
+# cli.new_user
+
+# cli.update_user
+
+# cli.delete_user
+
+# cli.change_movie
 
 # cli.movie_titles
 
