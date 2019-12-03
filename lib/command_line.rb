@@ -75,7 +75,7 @@ class CommandLine
     #update#
     def change_show 
 
-        p "Please select a movie"
+        p "Please select a movie you would like to switch to"
         movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
         movie_title = movies.each do |movie| 
         p "#{movie[:id]}: #{movie[:title]}"
@@ -85,9 +85,9 @@ class CommandLine
      until i == num 
         i += 1
      end
-        p "You've selected #{movies[i - 1][:title]}"
         Show.last.update(user_id: User.last[:id], movie_id: movies[i - 1][:id], 
         user_name: User.last[:name], movie_title: movies[i - 1][:title])
+        print_ticket
     end
 
     
@@ -183,6 +183,7 @@ class CommandLine
         p "4. search a different movie"
         p "5. change your movie"
         p "6. delete use"
+        p "7. "
         
          input = g3t       
          
