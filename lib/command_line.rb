@@ -8,9 +8,18 @@ class CommandLine
             puts " \\ \\ /\\ / /  |  _|   | |     | |     | | | | | |\\/| | |  _|  "
             puts "  \\ V  V /   | |___  | |___  | |___  | |_| | | |  | | | |___ "
             puts "   \\_/\\_/    |_____| |_____|  \\____|  \\___/  |_|  |_| |_____|"
-                                                                         
-                                                      
-            s_help(27)
+            s_help(28)
+            p "press enter to continue"
+            s_help(28)
+            answer = get
+            if answer == ""
+            new_user
+            else 
+                exit
+            end                                           
+            s_help(20)
+
+            
         end
      
     def get
@@ -28,30 +37,57 @@ class CommandLine
     end
 
     def all_movies
+        p "here is your movie selection"
         movies = Movie.all.each{|movie| p "#{movie.id}) #{movie.title}"}
+        display_choices
     end
             
+    def user_move_to_movie 
+        p "would you like to select a movie now?"
+        s_help(5)
+        p "yes or no"
+        s_help(5)
+        answer = get
+        s_help(11)
+        if answer == "yes"
+            select_movie
+        elsif answer == "no"
+            display_choices
+        else
+            p "that was a wrong selection"
+            p "please try again"
+            user_move_to_movie
+        end
+    end
+
     def new_user
         p "Please enter your name."
         p "***********************"
-        s_help(28)
+        s_help(31)
         name = get
+        s_help(27)
         p "Please enter your age."
         p "***********************"
-        s_help(15)
+        s_help(32)
         age = get
-        new_profile = User.create(name: name, age: age)
+        s_help(18)
+        User.create(name: name, age: age)
         p "Thank You #{name}!"
+        s_help(31) 
+        user_move_to_movie
     end
     #read#
-    def movie_titles
-        p "Please select a movie"
+    def select_movie
+        p "Please select a movie for a movie ticket"
+        s_help(10)
      movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
      movie_title = movies.each do |movie| 
         p "#{movie[:id]}: #{movie[:title]}"
+        s_help(2)
      end
-     
+     s_help(10)
      num = g3t
+     s_help(8)
      i = 0
 
      until i == num 
@@ -60,150 +96,248 @@ class CommandLine
      p "You've selected #{movies[i - 1][:title]}"
      Show.create(user_id: User.last[:id], movie_id: movies[i - 1][:id], 
      user_name: User.last[:name], movie_title: movies[i - 1][:title])
+     s_help(3)
      i = 0
      print_ticket
+     s_help(10)
+     display_choices
     end
 
     def print_ticket
-        p "Here is your movie ticket!"
+        p "Here is your new movie ticket!"
+        s_help(7)
         p "*****************************"
         p "#{Show.last[:user_name]}" 
         p "#{Show.last[:movie_title]}"
         p "*****************************"
     end
+ 
 
     #update#
-    def change_show 
+    def change_movie
+        p "would you like to change your movie?"
+        s_help(10)
+        p "yes or no"
+        s_help(10)
+        answer = get
+        if answer == "yes"
+            p "Please select a movie you would like to switch to"
+            s_help(10)
+            movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
+            movie_title = movies.each do |movie| 
+            p "#{movie[:id]}: #{movie[:title]}"
+            end
+            num = g3t
 
-        p "Please select a movie you would like to switch to"
-        movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
-        movie_title = movies.each do |movie| 
-        p "#{movie[:id]}: #{movie[:title]}"
-     end
-        num = g3t
-        i = 0
-     until i == num 
-        i += 1
-     end
-        Show.last.update(user_id: User.last[:id], movie_id: movies[i - 1][:id], 
-        user_name: User.last[:name], movie_title: movies[i - 1][:title])
-        print_ticket
+            i = 0
+            until i == num 
+            i += 1
+            end
+            Show.last.update(user_id: User.last[:id], movie_id: movies[i - 1][:id], 
+            user_name: User.last[:name], movie_title: movies[i - 1][:title])
+            print_ticket
+            s_help(5)
+            display_choices
+        elsif answer == "no"
+            display_choices
+        else 
+            p "that wasnt a valid option"
+            s_help(10)
+            p "please try again"
+            change_movie
+        end
     end
 
     
-    def change_movie
-        p "please update movie title"
-        title = get
-        p "please update movie rating"
-        rated = get
-        p "please update movie genre"
-        genre = get
-        Movie.last.update(title: title, rated: rated, genre: genre)
-    end
+    # def change_movie
+    #     p "is something wrong with a movie?"
+    #     p "yes or no?"
+    #     answer = get
+    #     if answer == "yes"
+    #         movies = Movie.find(1,2,3,4,5,6,7,8,9,10)
+    #         p "please select the incorrect movie "
+    #         movies = Movie.all.each{|movie| p "#{movie.id}) #{movie.title}"}
+        
+    #         n = g3t
+
+    #         i = 0
+    #         until i == n
+    #         i += 1
+    #         end
+
+    #         s = Show.last.update(movie_id: i, movie_title: movies[i - 1][:title])
+    #         print_ticket
+    #     elsif answer == "no"
+    #         display_choices
+    #     else
+    #         p "does not compute"
+    #         p "please select again"
+    #         change_movie
+    #     end
+    # end
 
 
     def update_user
         p "your user profile is"
+        s_help(5)
         p "#{User.last}// name: #{User.last.name}   age: #{User.last.age}"
+        s_help(5)
         p "would you like you update your profile?"
-        p "yee or naw"
+        s_help(5)
+        p "yee or naw?"
+        s_help(5)
         answer = get
         if answer == "yee"
             p "please enter your new user name"
+            s_help(10)
             new_name = get
             p "please enter your new age"
+            s_help(10)
             new_age = g3t
             new_profile = User.last.update(name: new_name, age: new_age)
+            Show.last.update(user_name: new_name)
             p "your new user profile is #{User.last}// name: #{User.last.name}   age: #{User.last.age}"
+            s_help(10)
+            display_choices
         elsif answer == "naw"
             display_choices
         else
             p "you entrance is invalid"
+            s_help(10)
             p "please try again"
             update_user
+            s_help(10)
         end
 
     end
 
     def delete_user
         p "are you sure you want to delete this user?"
+        s_help(10)
         p "yes or no"
+        s_help(10)
         answer = get
         if answer == "yes"
             User.last.delete
-            p "your user has been deleted"
+            Show.last.delete
+            p "your user and show have been deleted"
+            s_help(10)
             p "please create a new user"
+            s_help(10)
             new_user
         elsif answer == "no"
             display_choices
         else
             p "this is not a valid answer"
+            s_help(10)
             p "please try again"
             delete_user
+            s_help(10)
         end
     end
 
-    def delete_movie
-        p "are you sure you want to remove a movie?"
-        p "yes or no"
-        answer = get     
-         if answer == "yes"
-            p "please select the movie you wish to remove"
-            all_movies
-            p "or press 0 to go back"
-            n = g3t
-            i = 0
-            until i == n
-                i += 1
-            end
+    # def delete_movie
+    #     p "are you sure you want to remove a movie?"
+    #     p "yes or no"
+    #     answer = get     
+    #      if answer == "yes"
+    #         p "please select the movie you wish to remove"
+    #         p "or press 0 to go back"
+    #         movies = Movie.all.each{|movie| p "#{movie.id}) #{movie.title}"}
+    #         n = g3t
+    #         i = 0
+    #         until i == n
+    #             i += 1
+    #         end
     
-            if n == 0
-                delete_movie
-            else
-             s = Movie.find_by(id: n).delete
-             p "your new movie selection"
-             all_movies
-             display_choices
-            end
+    #         if n == 0
+    #             delete_movie
+    #         else
+    #          Movie.find_by(id: n).delete
+    #          Show.last.delete
+    #          p "your movie and show have been removed"
+    #          p "your new movie selection"
+    #          all_movies
+    #         end
+    #     elsif answer == "no"
+    #         display_choices
+    #     end
+    # end
+
+    def delete_show
+        p "are you sure you want to remove your ticket?"
+        s_help(10)
+        p "yes or no"
+        s_help(10)
+        answer = get
+        if answer == "yes"
+            Show.last.delete
+            p "your show has been deleted"
+            s_help(10)
+            p "here are all known movie tickets"
+            s_help(10)
+            Show.all.each{|show| p "#{show.user_name}///#{show.movie_title}"}
+            display_choices
         elsif answer == "no"
             display_choices
+        else
+            p "sorry that is not a selection"
+            s_help(10)
+            p "please try again"
+            delete_show
+            s_help(10)
         end
-
     end
 
 
 
     
     def display_choices
-        
         p "what would you like to do?"
-        p "1. print your ticket"
-        p "2. change your show"
-        p "3. show your profile"
-        p "4. search a different movie"
+            s_help(2)
+        p "1. list all movies"
+            s_help(2)
+        p "2. create a new user"
+            s_help(2)
+        p "3. select a movie"
+            s_help(2)
+        p "4. print your ticket"
+            s_help(2)
         p "5. change your movie"
-        p "6. delete use"
-        p "7. "
-        
-         input = g3t       
+            s_help(2)
+        p "6. update your user"
+            s_help(2)
+        p "7. delete your ticket"
+            s_help(2)
+        p "8. delete your user"
+            s_help(10)
+
+         input = g3t 
+         s_help(10)      
          
          case input
          when 1
-            print_ticket
+            all_movies
          when 2
-            change_show
+            new_user
          when 3
-            show_profile
+            select_movie
          when 4
-            search_dif_movie
+            print_ticket
          when 5
             change_movie
          when 6
+            update_user
+         when 7
+            delete_show
+         when 8
             delete_user
          else
             p "that selection was invalid"
+            s_help(5)
             p "please try again"
             display_choices
+            s_help(5)
          end
         end
     
