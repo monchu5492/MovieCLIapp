@@ -17,23 +17,20 @@ require_relative '../config/environment'
  #cli.delete_show
  
  #cli.delete_user
- # cli.delete_movie
  
+ # cli.delete_movie
  
  # cli.all_movies
 
+ # cli.change_show
 
+ # cli.print_ticket
 
-# cli.change_show
+ # cli.show_profile
 
-# cli.print_ticket
+ # cli.new_movie
 
-
-# cli.show_profile
-
-# cli.new_movie
-
-# cli.change_movie
+ # cli.change_movie
 
 
 binding.pry
