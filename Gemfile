@@ -4,7 +4,7 @@ source "https://rubygems.org"
 gem "sqlite3", '~>1.4.0'
 gem "pry"
 gem "require_all"
-gem 'activerecord', '~>5.2.3'
+gem 'activerecord', '~>5.2.8'
 gem 'sinatra-activerecord'
 gem 'rest-client'
 gem 'faker'
